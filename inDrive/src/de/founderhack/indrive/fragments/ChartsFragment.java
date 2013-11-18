@@ -74,7 +74,7 @@ public class ChartsFragment extends Fragment {
 		ArrayList<DiagnosticValue> results = new ArrayList<DiagnosticValue>(maxResults);
 		int start = findNearestIndex(vals, timestamp);
 		int steps = Math.min( (vals.size() - start)/maxResults, 1);
-		for (int i = results.size()-1; i > start; i -= steps) {
+		for (int i = vals.size()-1; i > start; i -= steps) {
 			results.add(vals.get(i));
 		}
 		
