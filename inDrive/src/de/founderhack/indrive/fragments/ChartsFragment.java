@@ -45,17 +45,31 @@ public class ChartsFragment extends Fragment {
 	private void updateCharts() {
 		if(getView() == null) return;
 		
+		long timestamp = System.currentTimeMillis()-1000*60*60;
+		
 		LineGraph speedG = (LineGraph)getView().findViewById(R.id.graphSpeed);
-		speedG.removeAllLines();
+		LineGraph fuelG = (LineGraph)getView().findViewById(R.id.graphFuel);
+		LineGraph tempG = (LineGraph)getView().findViewById(R.id.graphTemp);
 		
 		List<DiagnosticValue> vals = DataBuffer.getInstance(getActivity()).speed;
-		if (speedG != null && vals != null && vals.size() > 0) {
+		updateChart(speedG, condense(vals, timestamp, 50),"#FFBB33");
+		
+		vals = DataBuffer.getInstance(getActivity()).fuelReserve;
+		updateChart(fuelG, condense(vals, timestamp, 50),"#DDEE55");
+		
+		vals = DataBuffer.getInstance(getActivity()).temp;
+		updateChart(tempG, condense(vals, timestamp, 50),"#00EE55");
+		
+		//mTimer.postDelayed(updateRunnable, 2000);
+	}
+	
+	private void updateChart (LineGraph graph, List<DiagnosticValue> list, String color) {
+		if (graph != null && list != null && list.size() > 0) {
+			graph.removeAllLines();
 			
 			Line l = new Line();
-			l.setColor(Color.parseColor("#FFBB33"));
+			l.setColor(Color.parseColor(color));
 			
-			long timestamp = System.currentTimeMillis()-1000*60*60;
-			List<DiagnosticValue> list = condense(vals, timestamp, 50);
 			for (int i = 0; i < list.size(); i++) {
 				DiagnosticValue val = list.get(i);
 				
@@ -64,11 +78,9 @@ public class ChartsFragment extends Fragment {
 				p.setY(val.getValue());
 				l.addPoint(p);
 			}
-			speedG.addLine(l);
-			speedG.setLineToFill(0);
+			graph.addLine(l);
+			graph.setLineToFill(0);
 		}
-		
-		mTimer.postDelayed(updateRunnable, 2000);
 	}
 	
 	@Override
