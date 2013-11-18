@@ -1,5 +1,7 @@
 package de.founderhack.indrive;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -11,14 +13,19 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import de.founderhack.indrive.DSA.DSAListener;
+import de.founderhack.indrive.GPSListener.GPSInfoListener;
+import de.founderhack.indrive.dsa.DiagnosticValue;
 import de.founderhack.indrive.fragments.WelcomeFragment;
 
-public class MainActivity extends FragmentActivity implements DSAListener {
+public class MainActivity extends FragmentActivity implements DSAListener, GPSInfoListener {
 	
 	private DSA mDSA;
 	private DataBuffer dataBuffer;
 	private TextToSpeech mTts;
 	private ViewPager mViewPager;
+	
+	private LocationManager mLocationManager;
+	private GPSListener mGPSListener;
 	private FragmentManager mFragmentManager;
 	
 	@Override
@@ -33,6 +40,9 @@ public class MainActivity extends FragmentActivity implements DSAListener {
 	}
 	
 	private void init(){
+		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		mGPSListener = new GPSListener(getApplicationContext(), this);
+		
 		mFragmentManager = getSupportFragmentManager();
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(new SectionsPagerAdapter(mFragmentManager));
@@ -86,14 +96,51 @@ public class MainActivity extends FragmentActivity implements DSAListener {
 			case 0:
 				return "willkommen";
 			case 1:
-				return "infoscreen";
+				return "greenscreen";
 			case 2:
-				return "statistiken";
+				return "big data";
 			case 3:
 				return "achievements";
 			}
 			return null;
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500, 5, mGPSListener);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mLocationManager.removeUpdates(mGPSListener);
+	}
+
+	@Override
+	public void onSpeedChanged(int kmh) {
+		//TODO
+	}
+
+	@Override
+	public void onAltitudeChanged(int meter) {
+		//TODO
+	}
+
+	@Override
+	public void onDistanceChanged(int distance) {
+		dataBuffer.distance.add(new DiagnosticValue("Distance", distance, "m"));
+	}
+
+	@Override
+	public void onDirectionChanged(int direction) {
+		//TODO
+	}
+
+	@Override
+	public void onLocationChanged(String[] address) {
+		//TODO
 	}
 
 }
