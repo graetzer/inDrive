@@ -10,6 +10,7 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 
 	private DSAListener mListener;
 	private DataBuffer dataBuffer;
+	private boolean debug = true;
 	
 	//Current values
 	private float fuelReserve, temp, oilTemp, brightness, coolantTemp, rpm, speed, accelerationPedal, range;
@@ -74,31 +75,40 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 	private void setValue(DiagnosticValue val){
 		if(val.getName().equals(DiagnosticNames.FUEL_RESERVE)){
 			fuelReserve = val.getValue();
-			dataBuffer.fuelReserve.add(val);
+			if (!debug)
+				dataBuffer.fuelReserve.add(val);
 		}else if(val.getName().equals(DiagnosticNames.OUTER_TEMPERATURE)){
 			temp = val.getValue();
-			dataBuffer.temp.add(val);
+			if (!debug)
+				dataBuffer.temp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.OIL_TEMPERATURE)){
 			oilTemp = val.getValue();
-			dataBuffer.oilTemp.add(val);
+			if (!debug)
+				dataBuffer.oilTemp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.PHOTO_TRANSISTOR)){
 			brightness = val.getValue();
-			dataBuffer.brightness.add(val);
+			if (!debug)
+				dataBuffer.brightness.add(val);
 		}else if(val.getName().equals(DiagnosticNames.COOLANT_TEMPERATURE)){
 			coolantTemp = val.getValue();
-			dataBuffer.coolantTemp.add(val);
+			if (!debug)
+				dataBuffer.coolantTemp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.ENGINE_RPM)){
 			rpm = val.getValue();
-			dataBuffer.rpm.add(val);
+			if (!debug)
+				dataBuffer.rpm.add(val);
 		}else if(val.getName().equals(DiagnosticNames.SPEED_SENSOR)){
 			speed = val.getValue();
-			dataBuffer.speed.add(val);
+			if (!debug)
+				dataBuffer.speed.add(val);
 		}else if(val.getName().equals(DiagnosticNames.ACCELERATOR_POSITION)){
 			accelerationPedal = val.getValue();
-			dataBuffer.accelerationPedal.add(val);
+			if (!debug)
+				dataBuffer.accelerationPedal.add(val);
 		}else if(val.getName().equals(DiagnosticNames.RANGE)){
 			range = val.getValue();
-			dataBuffer.range.add(val);
+			if (!debug)
+				dataBuffer.range.add(val);
 		}
 	}
 	
