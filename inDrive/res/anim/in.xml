@@ -8,6 +8,7 @@
 		android:repeatCount="0" />
 	
 	<translate 
+	    android:interpolator="@android:anim/decelerate_interpolator"
 	    android:fromYDelta="100%p" 
 	    android:toYDelta="0" 
 	    android:duration="1000"/>

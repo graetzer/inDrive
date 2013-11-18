@@ -23,7 +23,7 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 	
 	private DSA mDSA;
 	private DataBuffer dataBuffer;
-	private TextToSpeech mTts;
+	public TextToSpeech mTts;
 	private ViewPager mViewPager;
 	
 	private LocationManager mLocationManager;
