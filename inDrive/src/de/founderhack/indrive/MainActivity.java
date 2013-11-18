@@ -13,6 +13,9 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import de.founderhack.indrive.DSA.DSAListener;
+
+import de.founderhack.indrive.fragments.ChartsFragment;
+
 import de.founderhack.indrive.GPSListener.GPSInfoListener;
 import de.founderhack.indrive.dsa.DiagnosticValue;
 import de.founderhack.indrive.fragments.WelcomeFragment;
@@ -80,6 +83,10 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 			switch(position){
 			case 0:
 				return new WelcomeFragment();
+				
+			case 1:
+				return new ChartsFragment();
+				
 			default:
 				return new Fragment();
 			}
