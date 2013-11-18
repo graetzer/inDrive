@@ -7,7 +7,6 @@ import android.view.Menu;
 import de.founderhack.indrive.DSA.DSAListener;
 
 public class MainActivity extends Activity implements DSAListener {
-
 	
 	private DSA mDSA;
 	
