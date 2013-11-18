@@ -13,4 +13,13 @@
         android:textSize="80sp"
         android:text="herzlich willkommen bei\nin:drive" />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:alpha="0.3"
+        android:src="@drawable/icon_logo" />
+
 </RelativeLayout>
