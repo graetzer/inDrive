@@ -28,7 +28,7 @@
         android:gravity="center_horizontal" >
 
         <com.echo.holographlibrary.LineGraph
-            android:id="@+id/graphDistance"
+            android:id="@+id/graphTemp"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_margin="20dp" />
