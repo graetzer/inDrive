@@ -34,6 +34,7 @@ public class DiagnosticValue implements Serializable {
     private String mName;
     private float mValue;
     private String mUnit;
+    private long mTime = 0;
 
     /**
      * Create a new instance of a {@link DiagnosticValue} with a name and the
@@ -46,6 +47,7 @@ public class DiagnosticValue implements Serializable {
         mName = pName;
         mValue = pValue;
         mUnit = pUnit;
+        mTime = System.currentTimeMillis();
     }
 
     /**
@@ -69,5 +71,13 @@ public class DiagnosticValue implements Serializable {
     public String getUnit() {
         return mUnit;
     }
+
+	public long getTime() {
+		return mTime;
+	}
+
+	public void setTime(long mTime) {
+		this.mTime = mTime;
+	}
 
 }

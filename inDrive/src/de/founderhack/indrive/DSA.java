@@ -9,6 +9,7 @@ import de.founderhack.indrive.dsa.ReadVehicleValuesTask.VehicleValuesReaderTaskC
 public class DSA implements VehicleValuesReaderTaskCallbacks{
 
 	private DSAListener mListener;
+	private DataBuffer dataBuffer;
 	
 	//Current values
 	private float fuelReserve, temp, oilTemp, brightness, coolantTemp, rpm, speed, accelerationPedal, range;
@@ -20,6 +21,7 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 	
 	public DSA(DSAListener list){
 		mListener = list;
+		dataBuffer = DataBuffer.getInstance(null);
 	}
 	
 	public void stopListening(){
@@ -72,22 +74,31 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 	private void setValue(DiagnosticValue val){
 		if(val.getName().equals(DiagnosticNames.FUEL_RESERVE)){
 			fuelReserve = val.getValue();
+			dataBuffer.fuelReserve.add(val);
 		}else if(val.getName().equals(DiagnosticNames.OUTER_TEMPERATURE)){
 			temp = val.getValue();
+			dataBuffer.temp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.OIL_TEMPERATURE)){
 			oilTemp = val.getValue();
+			dataBuffer.oilTemp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.PHOTO_TRANSISTOR)){
 			brightness = val.getValue();
+			dataBuffer.brightness.add(val);
 		}else if(val.getName().equals(DiagnosticNames.COOLANT_TEMPERATURE)){
 			coolantTemp = val.getValue();
+			dataBuffer.coolantTemp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.ENGINE_RPM)){
 			rpm = val.getValue();
+			dataBuffer.rpm.add(val);
 		}else if(val.getName().equals(DiagnosticNames.SPEED_SENSOR)){
 			speed = val.getValue();
+			dataBuffer.speed.add(val);
 		}else if(val.getName().equals(DiagnosticNames.ACCELERATOR_POSITION)){
 			accelerationPedal = val.getValue();
+			dataBuffer.accelerationPedal.add(val);
 		}else if(val.getName().equals(DiagnosticNames.RANGE)){
 			range = val.getValue();
+			dataBuffer.range.add(val);
 		}
 	}
 	

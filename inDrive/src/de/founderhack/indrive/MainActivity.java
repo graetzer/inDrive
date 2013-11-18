@@ -9,11 +9,13 @@ import de.founderhack.indrive.DSA.DSAListener;
 public class MainActivity extends Activity implements DSAListener {
 	
 	private DSA mDSA;
+	private DataBuffer dataBuffer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		dataBuffer = DataBuffer.getInstance(getApplicationContext());
 		mDSA = new DSA(this);
 		mDSA.startListening();
 	}
