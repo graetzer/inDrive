@@ -27,6 +27,7 @@ public class MainActivity extends Activity implements DSAListener {
 
 	@Override
 	public void onSensorUpdate() {
+		//TODO Do something with the updated vars
 		Log.d("Results", "Speed: " + mDSA.getSpeed() + "km/h");
 	}
 
