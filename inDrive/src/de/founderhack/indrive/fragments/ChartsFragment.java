@@ -21,6 +21,13 @@ import android.view.ViewGroup;
 public class ChartsFragment extends Fragment {
 	
 	private Handler mTimer;
+	private Runnable updateRunnable = new Runnable() {
+		
+		@Override
+		public void run() {
+			updateCharts();
+		}
+	};
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +43,8 @@ public class ChartsFragment extends Fragment {
 	}
 	
 	private void updateCharts() {
+		if(getView() == null) return;
+		
 		LineGraph speedG = (LineGraph)getView().findViewById(R.id.graphSpeed);
 		speedG.removeAllLines();
 		
@@ -59,12 +68,13 @@ public class ChartsFragment extends Fragment {
 			speedG.setLineToFill(0);
 		}
 		
-		mTimer.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				updateCharts();
-			}
-		}, 2000);
+		mTimer.postDelayed(updateRunnable, 2000);
+	}
+	
+	@Override
+	public void onPause() {
+		mTimer.removeCallbacks(updateRunnable);
+		super.onDestroy();
 	}
 	
 	private List<DiagnosticValue> condense(List<DiagnosticValue> vals, long timestamp, int maxResults) {
