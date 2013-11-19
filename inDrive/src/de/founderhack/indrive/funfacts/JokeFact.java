@@ -67,7 +67,9 @@ public class JokeFact implements Fact {
 				mJokes = new ArrayList<String>();
 				for (int i = 0; i < Math.min(50, response.length()); i++) {
 					try {
-						mJokes.add(response.getJSONObject(i).getString("content"));
+						String joke = response.getJSONObject(i).getString("content");
+						if (joke.length() < 200)
+							mJokes.add(joke);
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}

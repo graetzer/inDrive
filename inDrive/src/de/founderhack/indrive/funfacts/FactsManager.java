@@ -1,6 +1,7 @@
 package de.founderhack.indrive.funfacts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 
@@ -17,7 +18,10 @@ public class FactsManager {
 		registeredFact.add(new ZalandoFact("heimtextilien"));
 		registeredFact.add(new ZalandoFact("schuhe"));
 		registeredFact.add(new FuelConsumptionFact());
-		registeredFact.add(new JokeFact());
+		JokeFact j = new JokeFact();
+		registeredFact.add(j);
+		registeredFact.add(j);
+		registeredFact.add(j);
 	}
 	
 	private static FactsManager mInstance;
@@ -30,13 +34,11 @@ public class FactsManager {
 	}
 	
 	public Fact getRandomFact() {
+		Collections.shuffle(registeredFact, mRnd);
 		
-		ArrayList<Fact> buff = new ArrayList<Fact>(registeredFact.size());
 		for (Fact f : registeredFact) {
-			if (f.ready()) buff.add(f);
+			if (f.ready()) return f;
 		}
-		if (buff.size() == 0) return null;
-		
-		return buff.get(mRnd.nextInt(buff.size()));
+		return null;
 	}
 }
