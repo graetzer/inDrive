@@ -36,18 +36,18 @@ public class DataBuffer {
 	
 	private void generateDummyData() {
 		fuelReserve.clear();
-		fuelReserve.add(new DiagnosticValue("dummy", 55f,"dummy",1*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 51f,"dummy",2*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 42f,"dummy",3*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 39f,"dummy",4*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 29f,"dummy",5*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 55f,"dummy",System.currentTimeMillis()-18*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 51f,"dummy",System.currentTimeMillis()-12*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 42f,"dummy",System.currentTimeMillis()-6*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 39f,"dummy",System.currentTimeMillis()-3*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 29f,"dummy",System.currentTimeMillis()-1*60000));
 		
 		distance.clear();
-		distance.add(new DiagnosticValue("dummy", 10f,"dummy",1*60000));
-		distance.add(new DiagnosticValue("dummy", 28f,"dummy",2*60000));
-		distance.add(new DiagnosticValue("dummy", 45f,"dummy",3*60000));
-		distance.add(new DiagnosticValue("dummy", 52f,"dummy",4*60000));
-		distance.add(new DiagnosticValue("dummy", 60f,"dummy",5*60000));
+		distance.add(new DiagnosticValue("dummy", 10f,"dummy",System.currentTimeMillis()-18*60000));
+		distance.add(new DiagnosticValue("dummy", 28f,"dummy",System.currentTimeMillis()-12*60000));
+		distance.add(new DiagnosticValue("dummy", 45f,"dummy",System.currentTimeMillis()-6*60000));
+		distance.add(new DiagnosticValue("dummy", 52f,"dummy",System.currentTimeMillis()-3*60000));
+		distance.add(new DiagnosticValue("dummy", 60f,"dummy",System.currentTimeMillis()-1*60000));
 	}
 
 	private DataBuffer(Context ctx) {

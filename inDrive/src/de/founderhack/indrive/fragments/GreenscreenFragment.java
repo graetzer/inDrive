@@ -91,12 +91,21 @@ public class GreenscreenFragment extends Fragment {
 		title.startAnimation(out);
 	}
 	
+	@Override
+	public void onPause() {
+		mHandler.removeCallbacks(getNewFactRunnable);
+		super.onPause();
+	}
+	
 	private void setFunFact(Fact tmp){
 		title.setText(tmp.getFact());
 		((MainActivity)getActivity()).mTts.speak(tmp.getFact(), TextToSpeech.QUEUE_FLUSH, null);
 		
 		if(tmp.getIcon() != null){
 			image.setImageDrawable(tmp.getIcon());
+		}else{
+			if(tmp.getIconResource() != 0)
+			image.setImageResource(tmp.getIconResource());
 		}
 	}
 
