@@ -1,5 +1,7 @@
 package de.founderhack.indrive.fragments;
 
+import java.util.Random;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -12,6 +14,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import de.founderhack.indrive.Achievement;
 import de.founderhack.indrive.MainActivity;
 import de.founderhack.indrive.R;
 import de.founderhack.indrive.funfacts.Fact;
@@ -28,12 +31,17 @@ public class GreenscreenFragment extends Fragment {
 	private FactsManager mFactsManager;
 	private Handler mHandler;
 	private Fact oldFact;
+	private Random mRnd = new Random();
 	
 	private Runnable getNewFactRunnable = new Runnable() {
 		
 		@Override
 		public void run() {
-			pushNewFact(mFactsManager.getRandomFact());
+			
+			if (mRnd.nextInt() % 10 != 0)
+				pushNewFact(mFactsManager.getRandomFact());
+			else
+				pushNewAchivement(Achievement.achivements.get(mRnd.nextInt(Achievement.achivements.size())));
 		}
 		
 	};
@@ -56,8 +64,45 @@ public class GreenscreenFragment extends Fragment {
 		
 		mHandler = new Handler();
 		mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
-		((MainActivity)getActivity()).mTts.speak("Berechne Informationsfluss...", TextToSpeech.QUEUE_FLUSH, null);
+		//((MainActivity)getActivity()).mTts.speak("Berechne Informationsfluss...", TextToSpeech.QUEUE_FLUSH, null);
 		return view;
+	}
+	
+	private void pushNewAchivement(final Achievement ac) {
+		if(oldFact != null){
+			oldFact.onDestroy();
+		}
+		oldFact = null;
+		
+		out.setAnimationListener(new AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
+				
+				String text = ac.title + ": " + ac.description;
+				title.setText(text);
+				((MainActivity)getActivity()).mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+				
+				switch(ac.badgeType){
+				case Achievement.BADGE_POLICE:
+					image.setImageResource(R.drawable.badge_police); break;
+				case Achievement.BADGE_TRAFFIC:
+					image.setImageResource(R.drawable.badge_traffic); break;
+				case Achievement.BADGE_HUMAN:
+					image.setImageResource(R.drawable.badge_man); break;
+				case Achievement.BADGE_CASH:
+					image.setImageResource(R.drawable.badge_cash); break;
+				}
+				title.startAnimation(in);
+			}
+		});
 	}
 	
 	private void pushNewFact(final Fact fact){
@@ -70,16 +115,10 @@ public class GreenscreenFragment extends Fragment {
 		out.setAnimationListener(new AnimationListener() {
 			
 			@Override
-			public void onAnimationStart(Animation animation) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void onAnimationStart(Animation animation) {}
 			
 			@Override
-			public void onAnimationRepeat(Animation animation) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void onAnimationRepeat(Animation animation) {}
 			
 			@Override
 			public void onAnimationEnd(Animation animation) {
