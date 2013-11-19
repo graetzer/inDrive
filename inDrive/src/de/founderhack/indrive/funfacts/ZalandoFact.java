@@ -39,7 +39,7 @@ public class ZalandoFact implements Fact {
 
 	@Override
 	public boolean ready() {
-		return mResult != null;
+		return mResult != null && mIcon != null;
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class ZalandoFact implements Fact {
 					JSONArray results = obj.getJSONObject("searchResults").getJSONArray("data");
 					if (results.length() > 0) {
 						JSONObject result = results.getJSONObject(mRnd.nextInt(results.length()));
-						mResult = String.format("Sie haben %.2fL Sprit verbraucht, dafür hätten sie sich %s "+
+						mResult = String.format("Sie haben %.2fL Sprit verbraucht, dafür hätten sie sich \"%s\" "+
 						"bei Zalando kaufen können", fuel, result.getString("name"));
 						
 						mClient.get(result.getString("imageUrl"), new BinaryHttpResponseHandler(){
