@@ -49,6 +49,13 @@ public class DiagnosticValue implements Serializable {
         mUnit = pUnit;
         mTime = System.currentTimeMillis();
     }
+    
+    public DiagnosticValue(String pName, float pValue, String pUnit, long time) {
+        mName = pName;
+        mValue = pValue;
+        mUnit = pUnit;
+        mTime = time;	 	
+    }
 
     /**
      * Retrieve the name of the {@link DiagnosticValue}.
