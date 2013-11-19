@@ -18,8 +18,8 @@ public class FactsManager {
 		registeredFact.add(new ZalandoFact("heimtextilien"));
 		registeredFact.add(new ZalandoFact("schuhe"));
 		registeredFact.add(new FuelConsumptionFact());
+		registeredFact.add(new SpeedFact());
 		JokeFact j = new JokeFact();
-		registeredFact.add(j);
 		registeredFact.add(j);
 		registeredFact.add(j);
 	}
