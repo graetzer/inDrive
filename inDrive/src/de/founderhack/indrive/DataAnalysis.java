@@ -41,7 +41,7 @@ public class DataAnalysis {
 	public double getFuelConsumption(long startTime, long endTime) {
 		int start_index = findNearestIndex(buffer.fuelReserve, startTime);
 		int end_index = findNearestIndex(buffer.fuelReserve, endTime);
-		double fuelConsumption = buffer.fuelReserve.get(end_index).getValue()-buffer.fuelReserve.get(start_index).getValue();
+		double fuelConsumption = buffer.fuelReserve.get(start_index).getValue()-buffer.fuelReserve.get(end_index).getValue();
 		return fuelConsumption;	
 	}
 	

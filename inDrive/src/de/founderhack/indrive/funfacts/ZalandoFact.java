@@ -55,8 +55,8 @@ public class ZalandoFact implements Fact {
 	
 	public ZalandoFact(String category) {
 		mCategory = category;
-		mClient.addHeader("Accept", "application/xml");
-		mClient.setTimeout(100000);
+		mClient.addHeader("Accept", "application/json");
+		//mClient.setTimeout(100000);
 		getZalandoInfo();
 	}
 	
@@ -69,6 +69,7 @@ public class ZalandoFact implements Fact {
 		String url = String.format(Locale.ENGLISH, URL, mCategory, fuel*mFuelCostPerLitre);
 		
 		mClient.get(url, new AsyncHttpResponseHandler() {
+			
 			@Override
 			public void onSuccess(String response) {
 				try {
