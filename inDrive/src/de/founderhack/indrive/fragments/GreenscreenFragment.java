@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import de.founderhack.indrive.MainActivity;
 import de.founderhack.indrive.R;
@@ -22,6 +23,7 @@ public class GreenscreenFragment extends Fragment {
 	private static final int FUNFACT_DURATION = 10000;
 	
 	private TextView title;
+	private ImageView image;
 	private Animation in, out;
 	private FactsManager mFactsManager;
 	private Handler mHandler;
@@ -44,6 +46,7 @@ public class GreenscreenFragment extends Fragment {
 		
 		View view = inflater.inflate(R.layout.fragment_greenscreen, container, false);
 		title = (TextView) view.findViewById(R.id.textViewFragmentGreenscreenText1);
+		image = (ImageView) view.findViewById(R.id.imageViewFragmentGreenscreen);
 		title.setTypeface(DesignHelper.getRobotoThin(getActivity()));
 		
 		in = AnimationUtils.loadAnimation(getActivity(), R.anim.in);
@@ -91,6 +94,10 @@ public class GreenscreenFragment extends Fragment {
 	private void setFunFact(Fact tmp){
 		title.setText(tmp.getFact());
 		((MainActivity)getActivity()).mTts.speak(tmp.getFact(), TextToSpeech.QUEUE_FLUSH, null);
+		
+		if(tmp.getIcon() != null){
+			image.setImageDrawable(tmp.getIcon());
+		}
 	}
 
 }
