@@ -53,5 +53,23 @@ public class AchievementFragment extends Fragment {
 		tmp4.description = "Du hast Dir durch sparsame Farweise ein paar Sneakers erspart.";
 		tmp4.badgeType = Achievement.BADGE_CASH;
 		if (Math.random()<=0.2) achievements.add(tmp4);
+		
+		Achievement tmp5 = new Achievement();
+		tmp5.title = "Noob";
+		tmp5.description = "Du hast erfolgreich diese App gestartet. Glückwunsch! Held!";
+		tmp5.badgeType = Achievement.BADGE_POLICE;
+		achievements.add(tmp5);
+		
+		Achievement tmp6 = new Achievement();
+		tmp6.title = "Frühaufsteher";
+		tmp6.description = "Wer fährt denn bitte um 5 Uhr Auto?!";
+		tmp6.badgeType = Achievement.BADGE_HUMAN;
+		if (Math.random()<=0.4) achievements.add(tmp6);
+		
+		Achievement tmp7 = new Achievement();
+		tmp7.title = "Tankpausen";
+		tmp7.description = "Was machst du dauernd an der Tanke, Alkohol kaufen?";
+		tmp7.badgeType = Achievement.BADGE_POLICE;
+		if (Math.random()<=0.2) achievements.add(tmp7);
 	}
 }
