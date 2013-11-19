@@ -1,29 +1,46 @@
 package de.founderhack.indrive.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.TextView;
 import de.founderhack.indrive.MainActivity;
 import de.founderhack.indrive.R;
+import de.founderhack.indrive.funfacts.Fact;
+import de.founderhack.indrive.funfacts.FactsManager;
 import de.founderhack.indrive.stuff.DesignHelper;
 
 public class GreenscreenFragment extends Fragment {
 
+	private static final int FUNFACT_DURATION = 10000;
+	
 	private TextView title;
 	private Animation in, out;
+	private FactsManager mFactsManager;
+	private Handler mHandler;
+	private Fact oldFact;
+	
+	private Runnable getNewFactRunnable = new Runnable() {
+		
+		@Override
+		public void run() {
+			pushNewFact(mFactsManager.getRandomFact());
+		}
+		
+	};
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		mFactsManager = FactsManager.getInstance();
 		
 		View view = inflater.inflate(R.layout.fragment_greenscreen, container, false);
 		title = (TextView) view.findViewById(R.id.textViewFragmentGreenscreenText1);
@@ -34,18 +51,17 @@ public class GreenscreenFragment extends Fragment {
 		
 		title.startAnimation(in);
 		
-		Button btn = (Button) view.findViewById(R.id.button1);
-		btn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				pushNewFact("Für die gefahrene Strecke hättest Du auch 850 Gramm abnehmen können!");
-			}
-		});
+		mHandler = new Handler();
+		mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
 		return view;
 	}
 	
-	public void pushNewFact(final String fact){
+	private void pushNewFact(final Fact fact){
+		if(oldFact != null){
+			oldFact.onDestroy();
+		}
+		oldFact = fact;
+		fact.onActive();
 		
 		out.setAnimationListener(new AnimationListener() {
 			
@@ -63,13 +79,18 @@ public class GreenscreenFragment extends Fragment {
 			
 			@Override
 			public void onAnimationEnd(Animation animation) {
-				title.setText(fact);
+				mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
+				setFunFact(fact);
 				title.startAnimation(in);
-				((MainActivity)getActivity()).mTts.speak(fact, TextToSpeech.QUEUE_FLUSH, null);
 			}
 		});
 		
 		title.startAnimation(out);
+	}
+	
+	private void setFunFact(Fact tmp){
+		title.setText(tmp.getFact());
+		((MainActivity)getActivity()).mTts.speak(tmp.getFact(), TextToSpeech.QUEUE_FLUSH, null);
 	}
 
 }
