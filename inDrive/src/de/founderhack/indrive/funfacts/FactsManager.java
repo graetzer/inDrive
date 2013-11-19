@@ -11,7 +11,11 @@ public class FactsManager {
 	private FactsManager() {
 		registeredFact.add(new QuotesFact());
 		registeredFact.add(new ZalandoFact("schuhe"));
+		registeredFact.add(new ZalandoFact("elektronik"));
+		registeredFact.add(new ZalandoFact("heimtextilien"));
+		registeredFact.add(new ZalandoFact("schuhe"));
 		registeredFact.add(new FuelConsumptionFact());
+		registeredFact.add(new JokeFact());
 	}
 	
 	private static FactsManager mInstance;

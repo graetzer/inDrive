@@ -23,6 +23,11 @@ public class FuelConsumptionFact implements Fact {
 	public Drawable getIcon() {
 		return null;
 	}
+	
+	@Override
+	public int getIconResource() {
+		return 0;
+	}
 
 	@Override
 	public boolean ready() {
