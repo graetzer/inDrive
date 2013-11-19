@@ -2,8 +2,6 @@ package de.founderhack.indrive;
 
 import java.util.ArrayList;
 
-import de.founderhack.indrive.stuff.DesignHelper;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import de.founderhack.indrive.stuff.DesignHelper;
 
 public class AchievementAdapter extends ArrayAdapter<Achievement> {
 	
@@ -60,6 +59,8 @@ public class AchievementAdapter extends ArrayAdapter<Achievement> {
 			vh.icon.setImageResource(R.drawable.badge_traffic); break;
 		case Achievement.BADGE_HUMAN:
 			vh.icon.setImageResource(R.drawable.badge_man); break;
+		case Achievement.BADGE_CASH:
+			vh.icon.setImageResource(R.drawable.badge_cash); break;
 		}
 		
 		return convertView;
