@@ -58,6 +58,8 @@ public class AchievementAdapter extends ArrayAdapter<Achievement> {
 			vh.icon.setImageResource(R.drawable.badge_police); break;
 		case Achievement.BADGE_TRAFFIC:
 			vh.icon.setImageResource(R.drawable.badge_traffic); break;
+		case Achievement.BADGE_HUMAN:
+			vh.icon.setImageResource(R.drawable.badge_man); break;
 		}
 		
 		return convertView;

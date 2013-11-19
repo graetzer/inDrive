@@ -7,15 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.BinaryHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.widget.AnalogClock;
 import de.founderhack.indrive.DataAnalysis;
 import de.founderhack.indrive.funfacts.Fact;
 
