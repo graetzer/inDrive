@@ -11,7 +11,7 @@
         android:layout_centerVertical="true"
         android:padding="15dp"
         android:gravity="center"
-        android:text="Generiere unnützes Wissen..."
+        android:text="Berechne Informationsfluss..."
         android:textSize="60sp" />
 
     <ImageView
@@ -20,7 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:alpha="0.3"
-        android:src="@drawable/shoe" />
+        android:scaleType="centerCrop"
+        android:src="#FFFFFF" />
 
 </RelativeLayout>

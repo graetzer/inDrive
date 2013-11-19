@@ -20,7 +20,7 @@ import de.founderhack.indrive.stuff.DesignHelper;
 
 public class GreenscreenFragment extends Fragment {
 
-	private static final int FUNFACT_DURATION = 10000;
+	private static final int FUNFACT_DURATION = 12000;
 	
 	private TextView title;
 	private ImageView image;
@@ -103,9 +103,10 @@ public class GreenscreenFragment extends Fragment {
 		
 		if(tmp.getIcon() != null){
 			image.setImageDrawable(tmp.getIcon());
-		}else{
-			if(tmp.getIconResource() != 0)
+		}else if(tmp.getIconResource() != 0){
 			image.setImageResource(tmp.getIconResource());
+		}else{
+			image.setImageDrawable(null);
 		}
 	}
 
