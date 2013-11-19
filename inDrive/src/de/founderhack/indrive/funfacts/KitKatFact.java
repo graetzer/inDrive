@@ -30,7 +30,7 @@ public class KitKatFact implements Fact {
 
 	@Override
 	public void onActive() {
-		output = String.format("Für Deinen zurückglegten Weg könntest Du %f Kit Kats a 45 Gramm essen.", analysis.getKitKat());
+		output = String.format("Für Deinen zurückglegten Weg könntest Du %d Kit Kats a 45 Gramm essen.", (int)analysis.getKitKat());
 		
 	}
 
