@@ -38,6 +38,11 @@ public class DataAnalysis {
 		return index;
 	}
 	
+	public double getFuelConsumption() {
+		double fuelConsumption = buffer.fuelReserve.get(0).getValue()-buffer.fuelReserve.get(buffer.fuelReserve.size()-1).getValue();
+		return fuelConsumption;	
+	}
+	
 	public double getFuelConsumption(long startTime, long endTime) {
 		int start_index = findNearestIndex(buffer.fuelReserve, startTime);
 		int end_index = findNearestIndex(buffer.fuelReserve, endTime);
@@ -60,6 +65,16 @@ public class DataAnalysis {
 		return meanSpeed;	
 	}
 	
+	public double getMoney() {
+		double pricePerLiter = 1.5;
+		double money = 1.5*getFuelConsumption();
+		return money;
+	}
+	
+	public double getKitKat() {	
+		double kitKat = 1.68*getMoney();
+		return kitKat;	
+	}
 	
 	
 	
