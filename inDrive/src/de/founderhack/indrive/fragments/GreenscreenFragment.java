@@ -56,7 +56,6 @@ public class GreenscreenFragment extends Fragment {
 		
 		mHandler = new Handler();
 		mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
-		((MainActivity)getActivity()).mTts.speak("Berechne Informationsfluss...", TextToSpeech.QUEUE_FLUSH, null);
 		return view;
 	}
 	
@@ -100,7 +99,7 @@ public class GreenscreenFragment extends Fragment {
 	
 	private void setFunFact(Fact tmp){
 		title.setText(tmp.getFact());
-		((MainActivity)getActivity()).mTts.speak(tmp.getFact(), TextToSpeech.QUEUE_FLUSH, null);
+		((MainActivity) getActivity()).mTts.speak(tmp.getFact(), TextToSpeech.QUEUE_FLUSH, null);
 		
 		if(tmp.getIcon() != null){
 			image.setImageDrawable(tmp.getIcon());

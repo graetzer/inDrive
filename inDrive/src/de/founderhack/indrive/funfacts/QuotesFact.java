@@ -20,8 +20,6 @@ public class QuotesFact implements Fact {
 
 	@Override
 	public String getFact() {
-		Random mRnd = new Random();
-		mIndex = mRnd.nextInt(mQuotes.size());
 		return mQuotes.get(mIndex);
 	}
 
@@ -47,7 +45,8 @@ public class QuotesFact implements Fact {
 
 	@Override
 	public void onActive() {
-		
+		Random mRnd = new Random();
+		mIndex = mRnd.nextInt(mQuotes.size());
 	}
 
 }
