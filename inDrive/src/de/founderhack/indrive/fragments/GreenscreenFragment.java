@@ -37,11 +37,7 @@ public class GreenscreenFragment extends Fragment {
 		
 		@Override
 		public void run() {
-			
-			if (mRnd.nextInt() % 10 != 0)
-				pushNewFact(mFactsManager.getRandomFact());
-			else
-				pushNewAchivement(Achievement.achivements.get(mRnd.nextInt(Achievement.achivements.size())));
+			pushNewFact(mFactsManager.getRandomFact());
 		}
 		
 	};
@@ -69,49 +65,15 @@ public class GreenscreenFragment extends Fragment {
 		return view;
 	}
 	
-	private void pushNewAchivement(final Achievement ac) {
-		if(oldFact != null){
-			oldFact.onDestroy();
-		}
-		oldFact = null;
-		
-		out.setAnimationListener(new AnimationListener() {
-			
-			@Override
-			public void onAnimationStart(Animation animation) {}
-			
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-			
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
-				
-				String text = ac.title + ": " + ac.description;
-				title.setText(text);
-				((MainActivity)getActivity()).mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-				
-				switch(ac.badgeType){
-				case Achievement.BADGE_POLICE:
-					image.setImageResource(R.drawable.badge_police); break;
-				case Achievement.BADGE_TRAFFIC:
-					image.setImageResource(R.drawable.badge_traffic); break;
-				case Achievement.BADGE_HUMAN:
-					image.setImageResource(R.drawable.badge_man); break;
-				case Achievement.BADGE_CASH:
-					image.setImageResource(R.drawable.badge_cash); break;
-				}
-				title.startAnimation(in);
-			}
-		});
-	}
-	
 	private void pushNewFact(final Fact fact){
 		if(oldFact != null){
 			oldFact.onDestroy();
 		}
 		oldFact = fact;
-		fact.onActive();
+		
+		final boolean aas = mRnd.nextInt() % 10 != 0;
+		if (aas)
+			fact.onActive();
 		
 		out.setAnimationListener(new AnimationListener() {
 			
@@ -124,7 +86,25 @@ public class GreenscreenFragment extends Fragment {
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
-				setFunFact(fact);
+				if (aas)
+					setFunFact(fact);
+				else {
+					Achievement ac = Achievement.achivements.get(mRnd.nextInt(Achievement.achivements.size()));
+					String text = "Ein Badge wurde freigeschaltet:" + ac.title + ", " + ac.description;
+					title.setText(text);
+					((MainActivity)getActivity()).mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+					
+					switch(ac.badgeType){
+					case Achievement.BADGE_POLICE:
+						image.setImageResource(R.drawable.badge_police); break;
+					case Achievement.BADGE_TRAFFIC:
+						image.setImageResource(R.drawable.badge_traffic); break;
+					case Achievement.BADGE_HUMAN:
+						image.setImageResource(R.drawable.badge_man); break;
+					case Achievement.BADGE_CASH:
+						image.setImageResource(R.drawable.badge_cash); break;
+					}
+				}
 				title.startAnimation(in);
 			}
 		});
