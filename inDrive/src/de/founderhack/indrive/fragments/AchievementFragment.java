@@ -32,7 +32,7 @@ public class AchievementFragment extends Fragment {
 		
 		Achievement tmp = new Achievement();
 		tmp.title = "Autobahnraser";
-		tmp.description = "Du bist länger als 5 Minuten über 190 km/h gefahren!";
+		tmp.description = "Du bist lÃ¤nger als 5 Minuten Ã¼ber 190 km/h gefahren!";
 		tmp.badgeType = Achievement.BADGE_POLICE;
 		achievements.add(tmp);
 		

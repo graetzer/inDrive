@@ -64,9 +64,10 @@ public class ZalandoFact implements Fact {
 		
 		DataAnalysis data = new DataAnalysis();
 		long now = System.currentTimeMillis();
-		final double fuel = 10;//Math.abs(data.getFuelConsumption(now-1000*60*60, now));
+		final double fuel = Math.abs(data.getFuelConsumption(now-1000*60*60, now));
+		final double cost = fuel*mFuelCostPerLitre;
 		
-		String url = String.format(Locale.ENGLISH, URL, mCategory, fuel*mFuelCostPerLitre);
+		String url = String.format(Locale.ENGLISH, URL, mCategory, cost);
 		
 		mClient.get(url, new AsyncHttpResponseHandler() {
 			
@@ -77,8 +78,8 @@ public class ZalandoFact implements Fact {
 					JSONArray results = obj.getJSONObject("searchResults").getJSONArray("data");
 					if (results.length() > 0) {
 						JSONObject result = results.getJSONObject(mRnd.nextInt(results.length()));
-						mResult = String.format("Sie haben %.2fL Sprit verbraucht, dafür hätten sie sich \"%s\" "+
-						"bei Zalando kaufen können", fuel, result.getString("name"));
+						mResult = String.format("Sie haben %.2fL Sprit im Wert von %.2f€ verbraucht, dafür hätten sie sich \"%s\" "+
+						"bei Zalando kaufen können", fuel, cost, result.getString("name"));
 						
 						mClient.get(result.getString("imageUrl"), new BinaryHttpResponseHandler(){
 							public void onSuccess(byte[] binaryData) {
