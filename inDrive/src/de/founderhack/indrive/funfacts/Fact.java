@@ -10,6 +10,8 @@ public interface Fact {
 	/** Icon to show */
 	public Drawable getIcon();
 	
+	public int getIconResource();
+	
 	/**  */
 	public boolean ready();
 	
