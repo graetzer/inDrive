@@ -15,6 +15,7 @@ import android.view.Menu;
 import de.founderhack.indrive.DSA.DSAListener;
 import de.founderhack.indrive.GPSListener.GPSInfoListener;
 import de.founderhack.indrive.dsa.DiagnosticValue;
+import de.founderhack.indrive.fragments.AchievementFragment;
 import de.founderhack.indrive.fragments.ChartsFragment;
 import de.founderhack.indrive.fragments.GreenscreenFragment;
 import de.founderhack.indrive.fragments.WelcomeFragment;
@@ -88,6 +89,9 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 				
 			case 2:
 				return new ChartsFragment();
+			
+			case 3:
+				return new AchievementFragment();
 				
 			default:
 				return new Fragment();

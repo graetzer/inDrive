@@ -15,8 +15,8 @@ public class FactsManager {
 	public static FactsManager getInstance() {
 		if (mInstance == null) {
 			mInstance = new FactsManager();
-			
 		}
+		
 		return mInstance;
 	}
 	
