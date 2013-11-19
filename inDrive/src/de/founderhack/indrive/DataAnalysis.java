@@ -52,6 +52,14 @@ public class DataAnalysis {
 		return distance;	
 	}
 	
+	public double getMeanSpeed(long startTime, long endTime) {
+		int start_index = findNearestIndex(buffer.distance, startTime);
+		int end_index = findNearestIndex(buffer.distance, endTime);
+		double distance = buffer.distance.get(end_index).getValue()-buffer.distance.get(start_index).getValue();
+		double meanSpeed = distance / (endTime-startTime);
+		return meanSpeed;	
+	}
+	
 	
 	
 	

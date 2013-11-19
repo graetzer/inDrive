@@ -14,7 +14,7 @@
         android:text="herzlich willkommen bei\nin:drive" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/imageViewFragmentGreenscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

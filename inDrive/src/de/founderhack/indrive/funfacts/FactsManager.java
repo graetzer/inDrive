@@ -12,13 +12,13 @@ public class FactsManager {
 	private FactsManager() {
 		registeredFact.add(new QuotesFact());
 		registeredFact.add(new ZalandoFact("schuhe"));
+		registeredFact.add(new FuelConsumptionFact());
 	}
 	
 	private static FactsManager mInstance;
 	public static FactsManager getInstance() {
 		if (mInstance == null) {
 			mInstance = new FactsManager();
-			
 		}
 		return mInstance;
 	}

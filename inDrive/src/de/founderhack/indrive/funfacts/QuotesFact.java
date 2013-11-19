@@ -9,9 +9,9 @@ public class QuotesFact implements Fact {
 	private static Random mRnd = new Random();
 	@SuppressWarnings("serial")
 	private static ArrayList<String> mQuotes = new ArrayList<String>(){{
-		add("The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart - Helen Keller");
-		add("It is during our darkest moments that we must focus to see the light - Aristotle Onassis");
-		add("Don't judge each day by the harvest you reap but by the seeds that you plant - Louis Stevenson");
+		add("Für Deinen zurückglegten Weg könntest Du 1394 Kit Kats a 45 Gramm essen.");
+		add("Würdest Du Schafswolle tanken, müssten wegen Dir schon 305 Schafe geschoren worden sein.");
+		add("So fährt man Auto!\nDu könntest Dir von Deinem gesparten Geld ein neues Paar Turnschuhe bestellen ;-)");
 	}};
 	
 	private int mIndex = 0;
