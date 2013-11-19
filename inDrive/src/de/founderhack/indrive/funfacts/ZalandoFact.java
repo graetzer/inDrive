@@ -68,7 +68,7 @@ public class ZalandoFact implements Fact {
 
 		DataAnalysis data = new DataAnalysis();
 		long now = System.currentTimeMillis();
-		final double fuel = data.getFuelConsumption( now - 1000 * 60 * 20, now);
+		final double fuel = data.getFuelConsumption( now - 1200000, now);
 		final double cost = fuel * mFuelCostPerLitre;
 
 		String url = String.format(Locale.GERMAN, URL, mCategory, cost);
@@ -85,7 +85,7 @@ public class ZalandoFact implements Fact {
 						JSONObject result = results.getJSONObject(mRnd
 								.nextInt(results.length()));
 						mResult = String
-								.format("Sie haben in der letzten 20 Minuten %.2fL Sprit im Wert von %.2f€ verbraucht, dafür hätten sie sich \"%s\" "
+								.format("Sie haben in der letzten 20 Minuten %.2f Liter Sprit im Wert von %.2f€ verbraucht, dafür hätten sie sich \"%s\" "
 										+ "bei Zalando kaufen können", fuel,
 										cost, result.getString("name"));
 
