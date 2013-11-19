@@ -71,7 +71,7 @@ public class GreenscreenFragment extends Fragment {
 		}
 		oldFact = fact;
 		
-		final boolean aas = mRnd.nextInt() % 10 != 0;
+		final boolean aas = mRnd.nextInt() % 5 != 0;
 		if (aas)
 			fact.onActive();
 		
@@ -90,6 +90,8 @@ public class GreenscreenFragment extends Fragment {
 					setFunFact(fact);
 				else {
 					Achievement ac = Achievement.achivements.get(mRnd.nextInt(Achievement.achivements.size()));
+					((MainActivity)getActivity()).acFragment.add(ac);
+					
 					String text = "Ein Badge wurde freigeschaltet:" + ac.title + ", " + ac.description;
 					title.setText(text);
 					((MainActivity)getActivity()).mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);

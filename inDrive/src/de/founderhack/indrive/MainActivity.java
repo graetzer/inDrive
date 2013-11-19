@@ -32,6 +32,8 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 	private GPSListener mGPSListener;
 	private FragmentManager mFragmentManager;
 	
+	public AchievementFragment acFragment;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,6 +60,7 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 				mTts.speak("Herzlich willkommen!", TextToSpeech.QUEUE_FLUSH, null);
 			}
 		});
+		acFragment = new AchievementFragment();
 	}
 
 	@Override
@@ -92,7 +95,7 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 				return new ChartsFragment();
 			
 			case 3:
-				return new AchievementFragment();
+				return acFragment;
 				
 			default:
 				return new Fragment();
