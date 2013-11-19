@@ -3,7 +3,6 @@ package de.founderhack.indrive.funfacts;
 import java.util.ArrayList;
 import java.util.Random;
 
-import de.founderhack.indrive.fragments.ZalandoFact;
 
 public class FactsManager {
 	public ArrayList<Fact> registeredFact = new ArrayList<Fact>();

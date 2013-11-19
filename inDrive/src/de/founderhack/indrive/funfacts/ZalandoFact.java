@@ -1,6 +1,7 @@
-package de.founderhack.indrive.fragments;
+package de.founderhack.indrive.funfacts;
 
 import java.io.ByteArrayInputStream;
+import java.util.Locale;
 import java.util.Random;
 
 import org.json.JSONArray;
@@ -11,13 +12,13 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.AnalogClock;
 import de.founderhack.indrive.DataAnalysis;
-import de.founderhack.indrive.funfacts.Fact;
 
 public class ZalandoFact implements Fact {
 	
@@ -33,7 +34,6 @@ public class ZalandoFact implements Fact {
 	
 	@Override
 	public String getFact() {
-		// TODO Auto-generated method stub
 		return mResult;
 	}
 
@@ -52,16 +52,17 @@ public class ZalandoFact implements Fact {
 	public void onDestroy() {
 		mResult = null;
 		mIcon = null;
+		getZalandoInfo();
 	}
 
 	@Override
 	public void onActive() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public ZalandoFact(String category) {
 		mCategory = category;
+		mClient.addHeader("Accept", "application/xml");
+		mClient.setTimeout(100000);
 		getZalandoInfo();
 	}
 	
@@ -69,14 +70,16 @@ public class ZalandoFact implements Fact {
 		
 		DataAnalysis data = new DataAnalysis();
 		long now = System.currentTimeMillis();
-		final double fuel = data.getFuelConsumption(now-1000*60*60, now);
+		final double fuel = 10;//Math.abs(data.getFuelConsumption(now-1000*60*60, now));
 		
-		String url = String.format(URL, mCategory, fuel*mFuelCostPerLitre);
-		mClient.get(url, new JsonHttpResponseHandler() {
+		String url = String.format(Locale.ENGLISH, URL, mCategory, fuel*mFuelCostPerLitre);
+		
+		mClient.get(url, new AsyncHttpResponseHandler() {
 			@Override
-			public void onSuccess(JSONObject response) {
+			public void onSuccess(String response) {
 				try {
-					JSONArray results = response.getJSONObject("searchResults").getJSONArray("data");
+					JSONObject obj = new JSONObject(response);
+					JSONArray results = obj.getJSONObject("searchResults").getJSONArray("data");
 					if (results.length() > 0) {
 						JSONObject result = results.getJSONObject(mRnd.nextInt(results.length()));
 						mResult = String.format("Sie haben %.2fL Sprit verbraucht, dafür hätten sie sich %s "+
@@ -95,13 +98,6 @@ public class ZalandoFact implements Fact {
 					e.printStackTrace();
 				}
 			}
-			
-		    @Override
-		    public void onSuccess(String response) {
-		    	
-		    	
-		    	
-		    }
 		});
 
 	}
