@@ -97,6 +97,8 @@ public class GreenscreenFragment extends Fragment {
 		
 		if(tmp.getIcon() != null){
 			image.setImageDrawable(tmp.getIcon());
+		}else{
+			//image.setImageResource(tmp.get)
 		}
 	}
 

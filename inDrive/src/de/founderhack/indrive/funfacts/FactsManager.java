@@ -11,6 +11,7 @@ public class FactsManager {
 	private FactsManager() {
 		registeredFact.add(new QuotesFact());
 		registeredFact.add(new QuotesFact());
+		registeredFact.add(new KitKatFact());
 		registeredFact.add(new ZalandoFact("schuhe"));
 		registeredFact.add(new FuelConsumptionFact());
 	}
