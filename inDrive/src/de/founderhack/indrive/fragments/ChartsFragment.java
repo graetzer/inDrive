@@ -49,7 +49,7 @@ public class ChartsFragment extends Fragment {
 		
 		LineGraph speedG = (LineGraph)getView().findViewById(R.id.graphSpeed);
 		LineGraph fuelG = (LineGraph)getView().findViewById(R.id.graphFuel);
-		LineGraph tempG = (LineGraph)getView().findViewById(R.id.graphTemp);
+		//LineGraph tempG = (LineGraph)getView().findViewById(R.id.graphTemp);
 		
 		List<DiagnosticValue> vals = DataBuffer.getInstance(getActivity()).speed;
 		updateChart(speedG, condense(vals, timestamp, 50),"#FFBB33");
@@ -58,7 +58,7 @@ public class ChartsFragment extends Fragment {
 		updateChart(fuelG, condense(vals, timestamp, 50),"#DDEE55");
 		
 		vals = DataBuffer.getInstance(getActivity()).temp;
-		updateChart(tempG, condense(vals, timestamp, 50),"#00EE55");
+		//updateChart(tempG, condense(vals, timestamp, 50),"#00EE55");
 		
 		//mTimer.postDelayed(updateRunnable, 2000);
 	}
