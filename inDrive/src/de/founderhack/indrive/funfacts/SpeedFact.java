@@ -10,8 +10,10 @@ public class SpeedFact implements Fact {
 	private static ArrayList<String> mQuotes = new ArrayList<String>(){{
 		add("Sie sind auf den letzten 100km durschnittlich 180km/h gefahren. Sie sollten vorsichtig sein");
 		add("Wussten sie das wenn sie 100 km/h schneller fahren, das die Zeit für sie langsamer vergeht? (Jedenfalls sagt das Einstein)");
-		add("Ich bin nicht faul, ich bin im Energiesparmodus.");
-		add("Fischers Fritze fischt frische Fische. Fischt Fischers Fritze frische Fische?\nSag's mir.");
+		add("Sie sind auf den letzten 100km durschnittlich 180km/h gefahren. Denken sie daran: Auf dem Tacho sitzt der Tod und erwartet ihr Kommando.");
+		add("180 km/h ? Geschwindigkeit ist keine Hexerei. Radarkontrolle ist jedoch eine..");
+		add("Durschnittlich 180 km/h ? Das größte Problem der Schnecken ist ihre ungenügendes Tempo.");
+		add("Sie fahren 180 km/h. Bis zur unendlichkeit und noch viel weiter.");
 	}};
 	
 	private int mIndex = 0;

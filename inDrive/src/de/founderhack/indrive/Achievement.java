@@ -36,7 +36,7 @@ public class Achievement {
 		
 		Achievement tmp4 = new Achievement();
 		tmp4.title = "Sparschwein";
-		tmp4.description = "Du hast Dir durch sparsame Farweise ein paar schicke Sneakers erspart.";
+		tmp4.description = "Du hast Dir durch sparsame Fahrweise ein paar schicke Sneakers erspart.";
 		tmp4.badgeType = Achievement.BADGE_CASH;
 		add(tmp4);
 		

@@ -23,7 +23,7 @@ import de.founderhack.indrive.stuff.DesignHelper;
 
 public class GreenscreenFragment extends Fragment {
 
-	private static final int FUNFACT_DURATION = 10000;
+	private static final int FUNFACT_DURATION = 13000;
 	
 	private TextView title;
 	private ImageView image;

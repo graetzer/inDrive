@@ -42,7 +42,7 @@ public class FuelConsumptionFact implements Fact {
 	@Override
 	public void onActive() {
 		mFuel.clear();
-		mFuel.add(String.format("Sie haben bisher %.2f Liter Sprit verbraucht", buffer.fuelReserve.get(0).getValue()-buffer.fuelReserve.get(buffer.fuelReserve.size()-1).getValue()));
+		mFuel.add(String.format("Sie haben bisher insgesamt %.2f Liter Sprit verbraucht", buffer.fuelReserve.get(0).getValue()-buffer.fuelReserve.get(buffer.fuelReserve.size()-1).getValue()));
 		mFuel.add(String.format("Sie haben in den letzten 20 Minuten %.2f Liter Sprit verbraucht",analysis.getFuelConsumption(System.currentTimeMillis()-1200000, System.currentTimeMillis())));
 		mIndex = mRnd.nextInt(mFuel.size());
 	}
