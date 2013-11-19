@@ -3,12 +3,15 @@ package de.founderhack.indrive.funfacts;
 import java.util.ArrayList;
 import java.util.Random;
 
+import de.founderhack.indrive.fragments.ZalandoFact;
+
 public class FactsManager {
 	public ArrayList<Fact> registeredFact = new ArrayList<Fact>();
 	private Random mRnd = new Random();
 	
 	private FactsManager() {
 		registeredFact.add(new QuotesFact());
+		registeredFact.add(new ZalandoFact("schuhe"));
 	}
 	
 	private static FactsManager mInstance;
