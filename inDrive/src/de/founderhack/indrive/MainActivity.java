@@ -109,7 +109,7 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 			case 0:
 				return "willkommen";
 			case 1:
-				return "greenscreen";
+				return "infotainment";
 			case 2:
 				return "big data";
 			case 3:
