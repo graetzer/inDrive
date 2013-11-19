@@ -1,6 +1,7 @@
 package de.founderhack.indrive.funfacts;
 
 import de.founderhack.indrive.DataAnalysis;
+import de.founderhack.indrive.R;
 import android.graphics.drawable.Drawable;
 
 public class KitKatFact implements Fact {
@@ -19,7 +20,7 @@ public class KitKatFact implements Fact {
 	
 	@Override
 	public int getIconResource() {
-		return 0;
+		return R.drawable.kitkat;
 	}
 
 	@Override
