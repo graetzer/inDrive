@@ -20,7 +20,7 @@ import de.founderhack.indrive.stuff.DesignHelper;
 
 public class GreenscreenFragment extends Fragment {
 
-	private static final int FUNFACT_DURATION = 12000;
+	private static final int FUNFACT_DURATION = 13000;
 	
 	private TextView title;
 	private ImageView image;
@@ -56,6 +56,7 @@ public class GreenscreenFragment extends Fragment {
 		
 		mHandler = new Handler();
 		mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
+		((MainActivity)getActivity()).mTts.speak("Berechne Informationsfluss...", TextToSpeech.QUEUE_FLUSH, null);
 		return view;
 	}
 	
