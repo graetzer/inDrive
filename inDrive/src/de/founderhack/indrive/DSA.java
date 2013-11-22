@@ -6,6 +6,13 @@ import de.founderhack.indrive.dsa.DiagnosticValue;
 import de.founderhack.indrive.dsa.ReadVehicleValuesTask;
 import de.founderhack.indrive.dsa.ReadVehicleValuesTask.VehicleValuesReaderTaskCallbacks;
 
+/**
+ * Constantly poll the car for new values and write them into the buffer
+ * If we are in debug mode, provide fake values
+ * 
+ * @author simon
+ *
+ */
 public class DSA implements VehicleValuesReaderTaskCallbacks{
 
 	private DSAListener mListener;
@@ -13,7 +20,7 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 	private boolean debug = true;
 	
 	//Current values
-	private float fuelReserve, temp, oilTemp, brightness, coolantTemp, rpm, speed, accelerationPedal, range;
+	//private float fuelReserve, temp, oilTemp, brightness, coolantTemp, rpm, speed, accelerationPedal, range;
 	private boolean updating;
 	
 	public interface DSAListener{
@@ -22,7 +29,7 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 	
 	public DSA(DSAListener list){
 		mListener = list;
-		dataBuffer = DataBuffer.getInstance(null);
+		dataBuffer = DataBuffer.getInstance();
 	}
 	
 	public void stopListening(){
@@ -72,80 +79,39 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 		}
 	}
 	
-	private void setValue(DiagnosticValue val){
+	private void setValue(DiagnosticValue val) {
+		if (debug) {
+			// Provide some relevant data
+			dataBuffer.temp.add(new DiagnosticValue(DiagnosticNames.OUTER_TEMPERATURE, 20, "C°"));
+			dataBuffer.speed.add(new DiagnosticValue(DiagnosticNames.SPEED_SENSOR, 180, "km/h"));
+			
+			if (dataBuffer.fuelReserve.size() > 0) {
+				DiagnosticValue last = dataBuffer.fuelReserve.get(dataBuffer.fuelReserve.size()-1);
+				dataBuffer.fuelReserve.add(new DiagnosticValue(DiagnosticNames.FUEL_RESERVE, last.getValue()-0.1f, "l"));
+			}
+			return;
+		}
+		
+		
 		if(val.getName().equals(DiagnosticNames.FUEL_RESERVE)){
-			fuelReserve = val.getValue();
-			if (!debug)
-				dataBuffer.fuelReserve.add(val);
+			dataBuffer.fuelReserve.add(val);
 		}else if(val.getName().equals(DiagnosticNames.OUTER_TEMPERATURE)){
-			temp = val.getValue();
-			if (!debug)
-				dataBuffer.temp.add(val);
+			dataBuffer.temp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.OIL_TEMPERATURE)){
-			oilTemp = val.getValue();
-			if (!debug)
-				dataBuffer.oilTemp.add(val);
+			dataBuffer.oilTemp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.PHOTO_TRANSISTOR)){
-			brightness = val.getValue();
-			if (!debug)
-				dataBuffer.brightness.add(val);
+			dataBuffer.brightness.add(val);
 		}else if(val.getName().equals(DiagnosticNames.COOLANT_TEMPERATURE)){
-			coolantTemp = val.getValue();
-			if (!debug)
-				dataBuffer.coolantTemp.add(val);
+			dataBuffer.coolantTemp.add(val);
 		}else if(val.getName().equals(DiagnosticNames.ENGINE_RPM)){
-			rpm = val.getValue();
-			if (!debug)
-				dataBuffer.rpm.add(val);
+			dataBuffer.rpm.add(val);
 		}else if(val.getName().equals(DiagnosticNames.SPEED_SENSOR)){
-			speed = val.getValue();
-			if (!debug)
-				dataBuffer.speed.add(val);
+			dataBuffer.speed.add(val);
 		}else if(val.getName().equals(DiagnosticNames.ACCELERATOR_POSITION)){
-			accelerationPedal = val.getValue();
-			if (!debug)
 				dataBuffer.accelerationPedal.add(val);
 		}else if(val.getName().equals(DiagnosticNames.RANGE)){
-			range = val.getValue();
-			if (!debug)
 				dataBuffer.range.add(val);
 		}
-	}
-	
-	public float getFuelReserve(){
-		return fuelReserve;
-	}
-
-	public float getTemp() {
-		return temp;
-	}
-
-	public float getOilTemp() {
-		return oilTemp;
-	}
-
-	public float getBrightness() {
-		return brightness;
-	}
-
-	public float getCoolantTemp() {
-		return coolantTemp;
-	}
-
-	public float getRpm() {
-		return rpm;
-	}
-
-	public float getSpeed() {
-		return speed;
-	}
-
-	public float getAccelerationPedal() {
-		return accelerationPedal;
-	}
-
-	public float getRange() {
-		return range;
 	}
 	
 }

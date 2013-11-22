@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 
 public class SpeedFact implements Fact {
 
+	@SuppressWarnings("serial")
 	private static ArrayList<String> mQuotes = new ArrayList<String>(){{
 		add("Sie sind auf den letzten 100km durschnittlich 180km/h gefahren. Sie sollten vorsichtig sein");
 		add("Wussten sie das wenn sie 100 km/h schneller fahren, das die Zeit für sie langsamer vergeht? (Jedenfalls sagt das Einstein)");

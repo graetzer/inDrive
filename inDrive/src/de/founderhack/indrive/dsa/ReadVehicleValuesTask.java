@@ -237,19 +237,19 @@ public class ReadVehicleValuesTask extends AsyncTask<String, Object, Void> {
         onProgressUpdate(new DiagnosticValue(DiagnosticNames.FUEL_RESERVE, mVehicleCommunication.readFuelTankReserve(), "l"));
 
         onProgressUpdate("Reading: " + DiagnosticNames.FUELTANK_NEEDLE_POSITION);
-        onProgressUpdate(new DiagnosticValue(DiagnosticNames.FUELTANK_NEEDLE_POSITION, mVehicleCommunication.readFuelTankNeedlePosition(), "°"));
+        onProgressUpdate(new DiagnosticValue(DiagnosticNames.FUELTANK_NEEDLE_POSITION, mVehicleCommunication.readFuelTankNeedlePosition(), "ï¿½"));
 
         onProgressUpdate("Reading: " + DiagnosticNames.OUTER_TEMPERATURE);
-        onProgressUpdate(new DiagnosticValue(DiagnosticNames.OUTER_TEMPERATURE, mVehicleCommunication.readEnvironmentTemperature(), "°C"));
+        onProgressUpdate(new DiagnosticValue(DiagnosticNames.OUTER_TEMPERATURE, mVehicleCommunication.readEnvironmentTemperature(), "ï¿½C"));
 
         onProgressUpdate("Reading: " + DiagnosticNames.OIL_TEMPERATURE);
-        onProgressUpdate(new DiagnosticValue(DiagnosticNames.OIL_TEMPERATURE, mVehicleCommunication.readEngineOilTemperature(), "°C"));
+        onProgressUpdate(new DiagnosticValue(DiagnosticNames.OIL_TEMPERATURE, mVehicleCommunication.readEngineOilTemperature(), "ï¿½C"));
 
         onProgressUpdate("Reading: " + DiagnosticNames.PHOTO_TRANSISTOR);
         onProgressUpdate(new DiagnosticValue(DiagnosticNames.PHOTO_TRANSISTOR, mVehicleCommunication.readEnvironmentelLightValue(), "%"));
 
         onProgressUpdate("Reading: " + DiagnosticNames.COOLANT_TEMPERATURE);
-        onProgressUpdate(new DiagnosticValue(DiagnosticNames.COOLANT_TEMPERATURE, mVehicleCommunication.readEngineCoolantTemperature(), "°C"));
+        onProgressUpdate(new DiagnosticValue(DiagnosticNames.COOLANT_TEMPERATURE, mVehicleCommunication.readEngineCoolantTemperature(), "ï¿½C"));
 
         onProgressUpdate("Reading: " + DiagnosticNames.ENGINE_RPM);
         onProgressUpdate(new DiagnosticValue(DiagnosticNames.ENGINE_RPM, mVehicleCommunication.readEngineRpm(), "/min"));

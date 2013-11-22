@@ -12,11 +12,17 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.BinaryHttpResponseHandler;
 import android.graphics.drawable.Drawable;
+import de.dsa.hackathon2013.lib.FuelType;
 import de.founderhack.indrive.DataAnalysis;
 
+/**
+ * Fetch stuff from Zalando, based on the money you spend on gasoline
+ * 
+ * @author simon
+ *
+ */
 public class ZalandoFact implements Fact {
 
-	private double mFuelCostPerLitre = 1.35;
 	private String mCategory;
 	private AsyncHttpClient mClient = new AsyncHttpClient();
 	private Random mRnd = new Random();
@@ -66,10 +72,9 @@ public class ZalandoFact implements Fact {
 
 	private void getZalandoInfo() {
 
-		DataAnalysis data = new DataAnalysis();
 		long now = System.currentTimeMillis();
-		final double fuel = data.getFuelConsumption( now - 1200000, now);
-		final double cost = fuel * mFuelCostPerLitre;
+		final double fuel = DataAnalysis.getFuelConsumption( now - 1200000, now);
+		final double cost = fuel * DataAnalysis.fuelPricePerLitre(FuelType.GASOLINE);
 
 		String url = String.format(Locale.GERMAN, URL, mCategory, cost);
 

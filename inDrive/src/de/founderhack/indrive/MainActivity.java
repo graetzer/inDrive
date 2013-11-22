@@ -1,5 +1,7 @@
 package de.founderhack.indrive;
 
+import java.util.Locale;
+
 import android.content.Context;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -9,9 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import de.founderhack.indrive.DSA.DSAListener;
 import de.founderhack.indrive.GPSListener.GPSInfoListener;
@@ -38,7 +38,7 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		dataBuffer = DataBuffer.getInstance(getApplicationContext());
+		dataBuffer = DataBuffer.getInstance();
 		init();
 		
 		mDSA = new DSA(this);
@@ -57,6 +57,7 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 			
 			@Override
 			public void onInit(int status) {
+				mTts.setLanguage(Locale.GERMAN);
 				mTts.speak("Herzlich willkommen!", TextToSpeech.QUEUE_FLUSH, null);
 			}
 		});
@@ -73,7 +74,7 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 	@Override
 	public void onSensorUpdate() {
 		//TODO Do something with the updated vars
-		Log.d("Results", "Speed: " + mDSA.getSpeed() + "km/h");
+		//Log.d("Results", "Speed: " + mDSA.getSpeed() + "km/h");
 	}
 	
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {

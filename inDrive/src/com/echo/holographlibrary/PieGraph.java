@@ -31,15 +31,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Path.Direction;
-import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 
 public class PieGraph extends View {

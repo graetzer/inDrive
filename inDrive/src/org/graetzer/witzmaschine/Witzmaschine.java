@@ -49,10 +49,6 @@ public class Witzmaschine {
 				mCategories = array;
 				arrayHandler.onSuccess(array);
 			}
-			@Override
-			public void onFailure(Throwable t, String s) {
-				arrayHandler.onFailure(t, s);
-			}
 		});
 	}
 

@@ -1,20 +1,23 @@
-package de.founderhack.indrive;
+package de.founderhack.indrive.achivements;
 
 import java.util.ArrayList;
 
-public class Achievement {
+import de.dsa.hackathon2013.lib.FuelType;
+import de.founderhack.indrive.DataAnalysis;
 
-	public static final int BADGE_POLICE = 10,
-							BADGE_TRAFFIC = 20,
-							BADGE_HUMAN = 30,
-							BADGE_CASH = 40;
+public class AchivementManager {
+	private static AchivementManager instance;
+	public static AchivementManager getInstance() {
+		if (instance == null) instance = new AchivementManager();
+		return instance;
+	}
+		
+	private AchivementManager() {}
 	
-	public String title, description;
-	public int badgeType;
-	
+	public boolean debug = true;
 	
 	@SuppressWarnings("serial")
-	public static ArrayList<Achievement> achivements = new ArrayList<Achievement>(){{
+	public static ArrayList<Achievement> possible = new ArrayList<Achievement>(){{
 		
 		Achievement tmp = new Achievement();
 		tmp.title = "Autobahnraser";
@@ -58,4 +61,27 @@ public class Achievement {
 		tmp7.badgeType = Achievement.BADGE_POLICE;
 		add(tmp7);
 	}};
+
+	public Achievement evaluateAchivements() {
+		if(debug) {
+			int r = (int)(Math.random()*1000);
+			if (Math.random() < 0.1) {
+				return possible.get(r % possible.size());
+			}
+		} else {
+			double meanSp = DataAnalysis.getMeanSpeed(System.currentTimeMillis()-5*60*1000, System.currentTimeMillis());
+			if (meanSp > 190) {
+				return possible.get(0);
+			}
+			
+			if (DataAnalysis.moneySaved(60*60*1000, FuelType.GASOLINE) > 60) {
+				return possible.get(3);
+			}
+			// TODO more of that
+		}
+		
+		
+		
+		return null;
+	}
 }

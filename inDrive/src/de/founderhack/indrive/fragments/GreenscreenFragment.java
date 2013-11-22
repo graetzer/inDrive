@@ -1,7 +1,5 @@
 package de.founderhack.indrive.fragments;
 
-import java.util.Random;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -14,9 +12,10 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import de.founderhack.indrive.Achievement;
 import de.founderhack.indrive.MainActivity;
 import de.founderhack.indrive.R;
+import de.founderhack.indrive.achivements.Achievement;
+import de.founderhack.indrive.achivements.AchivementManager;
 import de.founderhack.indrive.funfacts.Fact;
 import de.founderhack.indrive.funfacts.FactsManager;
 import de.founderhack.indrive.stuff.DesignHelper;
@@ -31,7 +30,6 @@ public class GreenscreenFragment extends Fragment {
 	private FactsManager mFactsManager;
 	private Handler mHandler;
 	private Fact oldFact;
-	private Random mRnd = new Random();
 	
 	private Runnable getNewFactRunnable = new Runnable() {
 		
@@ -71,8 +69,8 @@ public class GreenscreenFragment extends Fragment {
 		}
 		oldFact = fact;
 		
-		final boolean aas = mRnd.nextInt() % 5 != 0;
-		if (aas)
+		final Achievement ac = AchivementManager.getInstance().evaluateAchivements();
+		if (ac == null)
 			fact.onActive();
 		
 		out.setAnimationListener(new AnimationListener() {
@@ -86,10 +84,9 @@ public class GreenscreenFragment extends Fragment {
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				mHandler.postDelayed(getNewFactRunnable, FUNFACT_DURATION);
-				if (aas)
+				if (ac == null)
 					setFunFact(fact);
 				else {
-					Achievement ac = Achievement.achivements.get(mRnd.nextInt(Achievement.achivements.size()));
 					((MainActivity)getActivity()).acFragment.add(ac);
 					
 					String text = "Ein Badge wurde freigeschaltet:" + ac.title + ", " + ac.description;

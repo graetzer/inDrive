@@ -1,16 +1,13 @@
 package de.founderhack.indrive;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import android.content.Context;
 import de.founderhack.indrive.dsa.DiagnosticValue;
 
 public class DataBuffer {
 	private static DataBuffer instance = null;
-	private Context context = null;
 
 	public List<DiagnosticValue> fuelReserve = new ArrayList<DiagnosticValue>(),
 			temp = new ArrayList<DiagnosticValue>(),
@@ -32,27 +29,26 @@ public class DataBuffer {
 		}
 		return dummyList;
 	}
-	
-	
+		
 	private void generateDummyData() {
 		fuelReserve.clear();
-		fuelReserve.add(new DiagnosticValue("dummy", 55f,"dummy",System.currentTimeMillis()-18*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 51f,"dummy",System.currentTimeMillis()-12*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 42f,"dummy",System.currentTimeMillis()-6*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 39f,"dummy",System.currentTimeMillis()-3*60000));
-		fuelReserve.add(new DiagnosticValue("dummy", 29f,"dummy",System.currentTimeMillis()-1*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 55f,"l",System.currentTimeMillis()-18*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 51f,"l",System.currentTimeMillis()-12*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 42f,"l",System.currentTimeMillis()-6*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 39f,"l",System.currentTimeMillis()-3*60000));
+		fuelReserve.add(new DiagnosticValue("dummy", 29f,"l",System.currentTimeMillis()-1*60000));
 		
 		distance.clear();
-		distance.add(new DiagnosticValue("dummy", 10f,"dummy",System.currentTimeMillis()-18*60000));
-		distance.add(new DiagnosticValue("dummy", 28f,"dummy",System.currentTimeMillis()-12*60000));
-		distance.add(new DiagnosticValue("dummy", 45f,"dummy",System.currentTimeMillis()-6*60000));
-		distance.add(new DiagnosticValue("dummy", 52f,"dummy",System.currentTimeMillis()-3*60000));
-		distance.add(new DiagnosticValue("dummy", 60f,"dummy",System.currentTimeMillis()-1*60000));
+		distance.add(new DiagnosticValue("dummy", 10f,"km",System.currentTimeMillis()-18*60000));
+		distance.add(new DiagnosticValue("dummy", 28f,"km",System.currentTimeMillis()-12*60000));
+		distance.add(new DiagnosticValue("dummy", 45f,"km",System.currentTimeMillis()-6*60000));
+		distance.add(new DiagnosticValue("dummy", 52f,"km",System.currentTimeMillis()-3*60000));
+		distance.add(new DiagnosticValue("dummy", 60f,"km",System.currentTimeMillis()-1*60000));
 	}
 
-	private DataBuffer(Context ctx) {
-		context = ctx;
-		fuelReserve.addAll(getDummyList());
+	private DataBuffer() {
+		
+		// Provide some data for a start
 		temp.addAll(getDummyList());
 		oilTemp.addAll(getDummyList());
 		brightness.addAll(getDummyList());
@@ -61,14 +57,12 @@ public class DataBuffer {
 		speed.addAll(getDummyList());
 		accelerationPedal.addAll(getDummyList());
 		range.addAll(getDummyList());
-		distance.addAll(getDummyList());
 		generateDummyData();
 	}
 
-	public static DataBuffer getInstance(Context context) {
+	public static DataBuffer getInstance() {
 		if (instance == null) {
-			instance = new DataBuffer(context.getApplicationContext());
-
+			instance = new DataBuffer();
 		}
 		return instance;
 	}

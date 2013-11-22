@@ -44,7 +44,7 @@ public class LineGraph extends View {
 
 	private ArrayList<Line> lines = new ArrayList<Line>();
 	Paint paint = new Paint();
-	private float minY = 0, minX = 0;
+	private float minY = 0;
 	private float maxY = 0, maxX = 0;
 	private boolean isMaxYUserSet = false;
 	private int lineToFill = -1;

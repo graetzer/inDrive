@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import de.founderhack.indrive.achivements.Achievement;
 import de.founderhack.indrive.stuff.DesignHelper;
 
 public class AchievementAdapter extends ArrayAdapter<Achievement> {

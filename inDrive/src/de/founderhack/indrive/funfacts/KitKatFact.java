@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 
 public class KitKatFact implements Fact {
 	private String output = null;
-	private DataAnalysis analysis = new DataAnalysis();
 
 	@Override
 	public String getFact() {
@@ -37,7 +36,7 @@ public class KitKatFact implements Fact {
 	@Override
 	public void onActive() {
 		output = String.format("Wenn du statt mit dem Auto zu fahren gelaufen wärest, "
-	+"hättest du ohne schlechtes Gewissen %d Kit Kats a 45 Gramm essen können.", (int)analysis.getKitKat());
+	+"hättest du ohne schlechtes Gewissen %d Kit Kats a 45 Gramm essen können.", (int)DataAnalysis.getKitKat());
 		
 	}
 
