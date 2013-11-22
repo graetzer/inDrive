@@ -1,6 +1,7 @@
 package de.founderhack.indrive.achivements;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import de.dsa.hackathon2013.lib.FuelType;
 import de.founderhack.indrive.DataAnalysis;
@@ -76,6 +77,10 @@ public class AchivementManager {
 			
 			if (DataAnalysis.moneySaved(60*60*1000, FuelType.GASOLINE) > 60) {
 				return possible.get(3);
+			}
+			
+			if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 5) {
+				return possible.get(5);
 			}
 			// TODO more of that
 		}
