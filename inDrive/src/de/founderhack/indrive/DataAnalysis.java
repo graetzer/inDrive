@@ -62,7 +62,7 @@ public class DataAnalysis {
 		int start_index = findNearestIndex(buffer.distance, startTime);
 		int end_index = findNearestIndex(buffer.distance, endTime);
 		double distance = buffer.distance.get(end_index).getValue()-buffer.distance.get(start_index).getValue();
-		double meanSpeed = distance / (endTime-startTime);
+		double meanSpeed = (1000*60*60*distance) / (endTime-startTime);
 		return meanSpeed;	
 	}
 	
@@ -84,8 +84,8 @@ public class DataAnalysis {
 	public static double moneySaved(long timespan, FuelType type) {
 		long now = System.currentTimeMillis();
 		long day = 24*60*60*1000;
-		double currentCons = getFuelConsumption(now, now-timespan);
-		double lastCons = getFuelConsumption(now-day, now-timespan-day);
+		double currentCons = getFuelConsumption(now-timespan, now);
+		double lastCons = getFuelConsumption(now-timespan-day, now-day);
 		return (currentCons - lastCons)*fuelPricePerLitre(type);
 	}
 	

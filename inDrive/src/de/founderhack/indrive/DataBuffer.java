@@ -40,10 +40,10 @@ public class DataBuffer {
 		
 		distance.clear();
 		distance.add(new DiagnosticValue("dummy", 10f,"km",System.currentTimeMillis()-18*60000));
-		distance.add(new DiagnosticValue("dummy", 28f,"km",System.currentTimeMillis()-12*60000));
-		distance.add(new DiagnosticValue("dummy", 45f,"km",System.currentTimeMillis()-6*60000));
-		distance.add(new DiagnosticValue("dummy", 52f,"km",System.currentTimeMillis()-3*60000));
-		distance.add(new DiagnosticValue("dummy", 60f,"km",System.currentTimeMillis()-1*60000));
+		distance.add(new DiagnosticValue("dummy", 48f,"km",System.currentTimeMillis()-12*60000));
+		distance.add(new DiagnosticValue("dummy", 65f,"km",System.currentTimeMillis()-6*60000));
+		distance.add(new DiagnosticValue("dummy", 82f,"km",System.currentTimeMillis()-3*60000));
+		distance.add(new DiagnosticValue("dummy", 100f,"km",System.currentTimeMillis()-1*60000));
 	}
 
 	private DataBuffer() {

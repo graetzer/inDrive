@@ -17,7 +17,7 @@ public class DSA implements VehicleValuesReaderTaskCallbacks{
 
 	private DSAListener mListener;
 	private DataBuffer dataBuffer;
-	private boolean debug = true;
+	public boolean debug = true;
 	
 	//Current values
 	//private float fuelReserve, temp, oilTemp, brightness, coolantTemp, rpm, speed, accelerationPedal, range;

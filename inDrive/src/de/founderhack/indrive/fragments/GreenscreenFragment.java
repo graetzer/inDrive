@@ -89,7 +89,7 @@ public class GreenscreenFragment extends Fragment {
 				else {
 					((MainActivity)getActivity()).acFragment.add(ac);
 					
-					String text = "Ein Badge wurde freigeschaltet:" + ac.title + ", " + ac.description;
+					String text = "Ein Badge wurde freigeschaltet: " + ac.title + ", " + ac.description;
 					title.setText(text);
 					((MainActivity)getActivity()).mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 					

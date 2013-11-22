@@ -148,7 +148,13 @@ public class MainActivity extends FragmentActivity implements DSAListener, GPSIn
 
 	@Override
 	public void onDistanceChanged(int distance) {
-		dataBuffer.distance.add(new DiagnosticValue("Distance", distance, "m"));
+		if (!mDSA.debug) {
+			int start = 0;
+			if (dataBuffer.distance.size() > 0) {
+				start = (int) dataBuffer.distance.get(dataBuffer.distance.size()-1).getValue();
+			}
+			dataBuffer.distance.add(new DiagnosticValue("Distance", start+distance, "m"));
+		}
 	}
 
 	@Override
